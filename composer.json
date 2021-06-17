@@ -4,7 +4,9 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "require": {},
+    "require": {
+        "jenssegers/agent": "^2.6"
+    },
     "autoload": {
         "psr-4": {
             "Dawnstar\\Tracker\\": "src"
