@@ -8,10 +8,7 @@
     "autoload": {
         "psr-4": {
             "Dawnstar\\Tracker\\": "src"
-        },
-        "files": [
-            "src\\Http\\helpers.php"
-        ]
+        }
     },
     "config": {
         "sort-packages": true,
