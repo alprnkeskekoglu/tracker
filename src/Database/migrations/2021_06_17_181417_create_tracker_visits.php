@@ -18,7 +18,6 @@ class CreateTrackerVisits extends Migration
             $table->unsignedBigInteger('cookie_id')->index('cookie_id');
             $table->unsignedBigInteger('session_id')->index('session_id');
             $table->unsignedBigInteger('url_id')->index('url_id')->nullable();
-            $table->string('url_string');
             $table->string('ip');
             $table->tinyInteger('hour')->nullable();
             $table->tinyInteger('week')->nullable();

@@ -136,7 +136,6 @@ class Tracker
                 'cookie_id' => $cookie->id,
                 'session_id' => $session->id,
                 'url_id' => $url ? $url->id : null,
-                'url_string' => $request->getPathInfo(),
                 'ip' => $ip,
                 'hour' => date('H'),
                 'week' => date('W'),
