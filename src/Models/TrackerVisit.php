@@ -14,12 +14,12 @@ class TrackerVisit extends Model
 
     public function cookie()
     {
-        return $this->belongsTo(TrackerCookie::class);
+        return $this->belongsTo(TrackerCookie::class, 'cookie_id', 'id');
     }
 
     public function session()
     {
-        return $this->belongsTo(TrackerSession::class);
+        return $this->belongsTo(TrackerSession::class, 'session_id', 'id');
     }
 
     public function url()

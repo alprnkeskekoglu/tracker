@@ -12,6 +12,6 @@ class TrackerOperatingSystem extends Model
 
     public function cookies()
     {
-        return $this->hasMany(TrackerCookie::class);
+        return $this->hasMany(TrackerCookie::class, 'operating_system_id', 'id');
     }
 }
