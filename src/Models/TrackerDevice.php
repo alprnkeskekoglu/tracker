@@ -12,6 +12,6 @@ class TrackerDevice extends Model
 
     public function cookies()
     {
-        return $this->hasMany(TrackerCookie::class);
+        return $this->hasMany(TrackerCookie::class, 'device_id', 'id');
     }
 }

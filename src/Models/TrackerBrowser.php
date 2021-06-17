@@ -12,6 +12,6 @@ class TrackerBrowser extends Model
 
     public function cookies()
     {
-        return $this->hasMany(TrackerCookie::class);
+        return $this->hasMany(TrackerCookie::class, 'browser_id', 'id');
     }
 }

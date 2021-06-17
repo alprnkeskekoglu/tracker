@@ -13,11 +13,11 @@ class TrackerSession extends Model
 
     public function cookie()
     {
-        return $this->belongsTo(TrackerCookie::class);
+        return $this->belongsTo(TrackerCookie::class, 'session_id', ',d');
     }
 
     public function visits()
     {
-        return $this->hasMany(TrackerVisit::class);
+        return $this->hasMany(TrackerVisit::class, 'sesion_id', 'id');
     }
 }

@@ -13,26 +13,26 @@ class TrackerCookie extends Model
 
     public function browser()
     {
-        return $this->belongsTo(TrackerBrowser::class);
+        return $this->belongsTo(TrackerBrowser::class, 'browser_id', 'id');
     }
 
     public function device()
     {
-        return $this->belongsTo(TrackerDevice::class);
+        return $this->belongsTo(TrackerDevice::class, 'device_id', 'id');
     }
 
     public function operatingSystem()
     {
-        return $this->belongsTo(TrackerOperatingSystem::class);
+        return $this->belongsTo(TrackerOperatingSystem::class, 'operating_system_id', 'id');
     }
 
     public function sessions()
     {
-        return $this->hasMany(TrackerSession::class);
+        return $this->hasMany(TrackerSession::class, 'cookie_id', 'id');
     }
 
     public function visits()
     {
-        return $this->hasMany(TrackerVisit::class);
+        return $this->hasMany(TrackerVisit::class, 'cookie_id', 'id');
     }
 }

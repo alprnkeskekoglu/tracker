@@ -62,7 +62,7 @@ class Tracker
                 'device_id' => $device->id,
                 'operating_system_id' => $operatingSystem->id,
                 'browser_id' => $browser->id,
-                'user_id' => auth()->id()
+                'user_id' => auth('web')->id()
             ]
         );
     }
@@ -138,7 +138,7 @@ class Tracker
                 'url_id' => $url ? $url->id : null,
                 'ip' => $ip,
                 'hour' => date('H'),
-                'week' => date('W'),
+                'week' => date('N'),
                 'referer' => $referer,
                 'query_string' => $queryString != '' ? $queryString : null,
                 'utm' => json_encode($utm)
