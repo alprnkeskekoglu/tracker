@@ -2,7 +2,7 @@
 
 namespace Dawnstar\Tracker\Models;
 
-use Dawnstar\Models\Url;
+use Dawnstar\Core\Models\Url;
 use Illuminate\Database\Eloquent\Model;
 
 class TrackerVisit extends Model

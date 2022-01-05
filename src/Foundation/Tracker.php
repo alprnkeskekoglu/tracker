@@ -2,7 +2,7 @@
 
 namespace Dawnstar\Tracker\Foundation;
 
-use Dawnstar\Models\Url;
+use Dawnstar\Core\Models\Url;
 use Dawnstar\Tracker\Models\TrackerBrowser;
 use Dawnstar\Tracker\Models\TrackerCookie;
 use Dawnstar\Tracker\Models\TrackerDevice;
