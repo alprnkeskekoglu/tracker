@@ -32,6 +32,11 @@ class Tracker
         }
 
         $device = $this->getDevice();
+
+        if($device == 'robot') {
+            return;
+        }
+
         $operatingSystem = $this->getOperatingSystem();
         $browser = $this->getBrowser();
         $cookie = $this->getCookie($device, $operatingSystem, $browser);
