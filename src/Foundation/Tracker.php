@@ -33,7 +33,7 @@ class Tracker
 
         $device = $this->getDevice();
 
-        if($device == 'robot') {
+        if($device->name == 'robot') {
             return;
         }
 
