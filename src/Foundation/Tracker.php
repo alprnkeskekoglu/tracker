@@ -15,16 +15,20 @@ use Jenssegers\Agent\Agent;
 
 class Tracker
 {
-    /**
-     * @var Agent
-     */
+    /** @var Agent */
     protected Agent $userAgent;
 
+    /**
+     * Tracker constructor.
+     */
     public function __construct()
     {
         $this->userAgent = new Agent();
     }
 
+    /**
+     * @return void
+     */
     public function init(): void
     {
         if (!$this->canVisitSave()) {
@@ -33,7 +37,7 @@ class Tracker
 
         $device = $this->getDevice();
 
-        if($device->name == 'robot') {
+        if($device->isRobot()) {
             return;
         }
 
@@ -50,8 +54,11 @@ class Tracker
      * @param TrackerBrowser $browser
      * @return TrackerCookie
      */
-    public function getCookie(TrackerDevice $device, TrackerOperatingSystem $operatingSystem, TrackerBrowser $browser): TrackerCookie
-    {
+    public function getCookie(
+        TrackerDevice $device,
+        TrackerOperatingSystem $operatingSystem,
+        TrackerBrowser $browser
+    ): TrackerCookie {
         $cookieKey = Cookie::get('_datr');
 
         if (is_null($cookieKey)) {
@@ -61,13 +68,13 @@ class Tracker
 
         return TrackerCookie::firstOrCreate(
             [
-                'key' => $cookieKey
+                'key' => $cookieKey,
             ],
             [
                 'device_id' => $device->id,
                 'operating_system_id' => $operatingSystem->id,
                 'browser_id' => $browser->id,
-                'user_id' => auth('web')->id()
+                'user_id' => auth('web')->id(),
             ]
         );
     }
@@ -87,7 +94,7 @@ class Tracker
 
         return TrackerSession::firstOrCreate(
             [
-                'key' => $sessionKey
+                'key' => $sessionKey,
             ],
             [
                 'cookie_id' => $cookie->id,
@@ -129,12 +136,13 @@ class Tracker
      */
     private function visit(TrackerCookie $cookie, TrackerSession $session): void
     {
+        // @todo take it from constructor
         $request = request();
 
         $url = $this->getUrl($request);
         $ip = $request->ip();
         $referer = parse_url($request->headers->get('referer'), PHP_URL_HOST);
-        list($queryString, $utm) = $this->getQueryStringAndUtm($request);
+        [$queryString, $utm] = $this->getQueryStringAndUtm($request);
 
         TrackerVisit::create(
             [
@@ -173,6 +181,7 @@ class Tracker
     {
         $url = trim(ltrim($request->getPathInfo(), '/'));
 
+        // @todo use repository
         return Url::where('url', 'like', "%$url")->first();
     }
 
@@ -190,6 +199,7 @@ class Tracker
                 if (strpos($key, 'utm_') !== false) {
                     $utm[$key] = $value;
                 }
+
                 if ($value) {
                     if ($i == 0) {
                         $queryString .= '?' . $key . '=' . urlencode($value);
@@ -197,6 +207,7 @@ class Tracker
                         $queryString .= '&' . $key . '=' . urlencode($value);
                     }
                 }
+
                 $i++;
             }
         }
